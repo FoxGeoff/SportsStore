@@ -231,3 +231,105 @@ import { AppComponent } from './app.component';
 })
 export class AppModule { }
 ```
+
+### 5.3 Starting the data model
+
+The best place to start any new project is the data model. I want to get to the point where you can see some Angular features at work, so rather than define the data model from end to end, I am going to put some basic functionality in place using dummy data. I’ll use this data to create user-facing features and then return to the data model to wire it up to the RESTful web service in chapter 6.
+
+### 5.3.1 Creating the model classes
+
+1. Listing 5.11. The contents of the product.model.ts file in the src/app/model folder
+
+```typescript
+export class Product {
+ 
+    constructor(
+        public id?: number,
+        public name?: string,
+        public category?: string,
+        public description?: string,
+        public price?: number) { }
+}
+```
+
+### 5.3.2 Creating the dummy data source
+
+1. Listing 5.12. The contents of the static.datasource.ts file in the src/app/model folder
+
+```typescript
+import { Injectable, Signal, signal } from "@angular/core";
+import { Product } from "./product.model";
+ 
+@Injectable()
+export class StaticDataSource {
+    private data: Product[] = [
+        new Product(1, "Product 1", "Category 1", 
+            "Product 1 (Category 1)", 100),
+        new Product(2, "Product 2", "Category 1", 
+            "Product 2 (Category 1)", 100),
+        new Product(3, "Product 3", "Category 1", 
+            "Product 3 (Category 1)", 100),
+        new Product(4, "Product 4", "Category 1", 
+            "Product 4 (Category 1)", 100),
+        new Product(5, "Product 5", "Category 1", 
+            "Product 5 (Category 1)", 100),
+        new Product(6, "Product 6", "Category 2", 
+            "Product 6 (Category 2)", 100),
+        new Product(7, "Product 7", "Category 2", 
+            "Product 7 (Category 2)", 100),
+        new Product(8, "Product 8", "Category 2", 
+            "Product 8 (Category 2)", 100),
+        new Product(9, "Product 9", "Category 2", 
+            "Product 9 (Category 2)", 100),
+        new Product(10, "Product 10", "Category 2", 
+            "Product 10 (Category 2)", 100),
+        new Product(11, "Product 11", "Category 3", 
+            "Product 11 (Category 3)", 100),
+        new Product(12, "Product 12", "Category 3", 
+            "Product 12 (Category 3)", 100),
+        new Product(13, "Product 13", "Category 3", 
+            "Product 13 (Category 3)", 100),
+        new Product(14, "Product 14", "Category 3", 
+            "Product 14 (Category 3)", 100),
+        new Product(15, "Product 15", "Category 3", 
+            "Product 15 (Category 3)", 100),
+    ];
+ 
+    products: Signal<Product[]> = signal<Product[]>(this.data)
+}
+```
+
+The StaticDataSource class defines a property named products, which returns the dummy data. The type of the value returned by the products property is a Signal<Product[]>, which is an example of a signal. Signals are the headline addition to Angular 16 and they are used to describe the relationships between the data values used by an application, which helps Angular update the HTML content it presents to the user as efficiently as possible. Signals are included in Angular 16 as a preview, which means the API may change in Angular 17 and that the signal features are not yet fully integrated into the rest of the Angular API.
+
+Signals are created with the signal<T> function, where T is the type of data contained by the signal. In this case, the type is an array of Product objects. As you will see shortly, signals of this type are used to create derived data values that are updated efficiently, as I explain in detail in part 2.
+
+### 5.3.3 Creating the model repository
+
+### Listing 5.13. The contents of the product.repository.ts file in the src/app/model folder
+
+```typescript
+import { Injectable, Signal, computed } from "@angular/core";
+import { Product } from "./product.model";
+import { StaticDataSource } from "./static.datasource";
+ 
+@Injectable()
+export class ProductRepository {
+    products: Signal<Product[]>;
+    categories: Signal<string[]>;
+ 
+    constructor(private dataSource: StaticDataSource) {
+        this.products = dataSource.products;
+        this.categories = computed(() => {
+            return this.dataSource.products()
+                .map(p => p.category ?? "(None)")
+                .filter((c, index, array) => 
+                    array.indexOf(c) == index).sort();
+        })
+    }
+ 
+    getProduct(id: number): Product | undefined {
+        return this.dataSource.products().find(p => p.id == id);
+    }
+}
+
+```
