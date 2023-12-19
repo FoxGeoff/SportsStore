@@ -159,3 +159,21 @@ module.exports = function (req, res, next) {
     next();
 }
 ```
+
+### Listing 5.7. Preparing the index.html file in the src folder
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SportsStore</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body class="p-2">
+  <app>SportsStore Will Go Here</app>
+</body>
+</html>
+```
