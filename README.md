@@ -373,3 +373,18 @@ The computed function accepts a function argument that generates a value using o
 Angular won’t recompute the value of the computed signal unless the underlying signals change. In this case, this means that the mapping and filtering of the products will only be done when the products change. As I explain in part 2, this is a change from the way that Angular has traditionally worked and helps avoid recomputing values that have not changed.
 
 Don’t worry if signals don’t make immediate sense. You will get a better idea of how they work as application features are added and I describe them in more detail in part 2 of this book.
+
+### 5.3.4 Creating the feature module
+
+1. Listing 5.14. The contents of the model.module.ts file in the src/app/model folder
+
+```typescript
+import { NgModule } from "@angular/core";
+import { ProductRepository } from "./product.repository";
+import { StaticDataSource } from "./static.datasource";
+ 
+@NgModule({
+    providers: [ProductRepository, StaticDataSource]
+})
+export class ModelModule { }
+```
