@@ -210,3 +210,24 @@ import { Component } from "@angular/core";
 })
 export class AppComponent { }
 ```
+
+### 5.2.2 Inspecting the root module
+
+There are two types of Angular modules: feature modules and the root module. Feature modules are used to group related application functionality to make the application easier to manage. I create feature modules for each major functional area of the application, including the data model, the store interface presented to users, and the administration interface.
+
+### Listing 5.9. The initial contents of the app.module.ts file in the src/app folder
+
+```typescript
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+ 
+import { AppComponent } from './app.component';
+ 
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
