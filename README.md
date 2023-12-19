@@ -35,3 +35,12 @@ npm install @fortawesome/fontawesome-free@6.2.1
 npm install --save-dev json-server@0.17.3
 npm install --save-dev jsonwebtoken@8.5.1
 ```
+
+```typscript
+Listing 5.2. Changing the application configuration using PowerShell
+
+ng config projects.SportsStore.architect.build.options.styles `
+'[""src/styles.css"",
+""node_modules/@fortawesome/fontawesome-free/css/all.min.css"",
+""node_modules/bootstrap/dist/css/bootstrap.min.css""]'
+```
