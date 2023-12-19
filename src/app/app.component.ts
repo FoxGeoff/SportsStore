@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './app.component.html',
+  template: `<div class="bg-success p-2 text-center text-white">
+                This is SportsStore
+             </div>`,
   styleUrl: './app.component.css'
 })
 export class AppComponent {

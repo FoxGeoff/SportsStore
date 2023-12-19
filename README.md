@@ -187,3 +187,26 @@ SportsStore/src/app/model     This folder will contain the code for the data mod
 SportsStore/src/app/store     This folder will contain the functionality for basic shopping.
 SportsStore/src/app/admin     This folder will contain the functionality for administration. 
 ```
+
+### 5.1.5 Running the example application
+
+1. RUN `http://localhost:3500/products/1`
+2. `npm run json`
+
+### 5.2 Preparing the Angular project features
+
+### 5.2.1 Updating the root component
+
+1. Listing 5.8. Replacing the contents of the app.component.ts file in the src/app folder
+
+```Typescript
+import { Component } from "@angular/core";
+ 
+@Component({
+  selector: "app",
+  template: `<div class="bg-success p-2 text-center text-white">
+                This is SportsStore
+             </div>`
+})
+export class AppComponent { }
+```
