@@ -333,3 +333,43 @@ export class ProductRepository {
 }
 
 ```
+
+### Notes
+
+When Angular needs to create a new instance of the repository, it will inspect the class and see that it needs a StaticDataSource object to invoke the ProductRepository constructor and create a new object.
+
+The repository uses the signal created by the data source in different ways. The simplest use is to read the data contained in the signal, like this:
+
+```Typescript
+...
+getProduct(id: number): Product | undefined {
+    return this.dataSource.products().find(p => p.id == id);
+}
+...
+
+```
+
+
+Signals are read by invoking them like a function, which is a little awkward until you get used to the syntax. The expression this.dataSource.products() returns the array of Product objects managed by the signal, which can then be used like any other array, including calling the find method.
+
+A more complex use is to create a computed signal, like this:
+
+```typescript
+...
+constructor(private dataSource: StaticDataSource) {
+    this.categories = computed(() => {
+        return this.dataSource.Products()
+            .map(p => p.category ?? "(None)")
+            .filter((c, index, array) => 
+                array.indexOf(c) == index).sort();
+    })
+}
+...
+
+```
+
+The computed function accepts a function argument that generates a value using one or more other signals. In this case, the argument function reads the value of the products signal and uses the map and filter array methods to generate a string array containing the products categories.
+
+Angular won’t recompute the value of the computed signal unless the underlying signals change. In this case, this means that the mapping and filtering of the products will only be done when the products change. As I explain in part 2, this is a change from the way that Angular has traditionally worked and helps avoid recomputing values that have not changed.
+
+Don’t worry if signals don’t make immediate sense. You will get a better idea of how they work as application features are added and I describe them in more detail in part 2 of this book.
