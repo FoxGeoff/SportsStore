@@ -36,9 +36,9 @@ npm install --save-dev json-server@0.17.3
 npm install --save-dev jsonwebtoken@8.5.1
 ```
 
-```typescript
-Listing 5.2. Changing the application configuration using PowerShell
+### Listing 5.2. Changing the application configuration using PowerShell
 
+```typescript
 ng config projects.SportsStore.architect.build.options.styles `
 '[""src/styles.css"",
 ""node_modules/@fortawesome/fontawesome-free/css/all.min.css"",
@@ -54,4 +54,22 @@ C:\Users\foxge\Github\SportsStore>ng config projects.SportsStore.architect.build
   "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
   "node_modules/bootstrap/dist/css/bootstrap.min.css"
 ]
+```
+
+### 5.1.2 Preparing the RESTful web service
+
+I added the json-server package to the project in the previous section. This is an excellent package for creating web services from JSON data or JavaScript code. Add the statement shown in listing 5.4 to the scripts section of the `package.json` file so that the json-server package can be started from the command line.
+
+```json
+...
+"scripts": {
+  "ng": "ng",
+  "start": "ng serve",
+  "build": "ng build",
+  "watch": "ng build --watch --configuration development",
+  "test": "ng test",
+  "json": "json-server data.js -p 3500 -m authMiddleware.js"        
+},
+...
+
 ```
