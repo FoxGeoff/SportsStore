@@ -177,3 +177,13 @@ module.exports = function (req, res, next) {
 </body>
 </html>
 ```
+
+### Table 5.1. The additional folders required for the SportsStore project
+
+```text
+
+Folder                        Description
+SportsStore/src/app/model     This folder will contain the code for the data model.
+SportsStore/src/app/store     This folder will contain the functionality for basic shopping.
+SportsStore/src/app/admin     This folder will contain the functionality for administration. 
+```
