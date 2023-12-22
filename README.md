@@ -388,3 +388,62 @@ import { StaticDataSource } from "./static.datasource";
 })
 export class ModelModule { }
 ```
+
+### 5.4 Starting the store
+
+### 5.4.1 Creating the store component and template
+
+```typescript
+//Listing 5.15. The contents of the store.component.ts file in the src/app/store folder
+// NOTE: This is  NOY Standalone component - we used standalone
+import { Component, Signal } from "@angular/core";
+import { Product } from "../model/product.model";
+import { ProductRepository } from "../model/product.repository";
+ 
+@Component({
+    selector: "store",
+    templateUrl: "store.component.html"
+})
+export class StoreComponent {
+    products: Signal<Product[]>;
+    categories: Signal<string[]>;
+ 
+    constructor(private repository: ProductRepository) { 
+        this.products = repository.products
+        this.categories = repository.categories;
+    }
+}
+```
+
+### 5.4.2 Creating the store feature module
+
+```typescript
+// Listing 5.17. The contents of the store.module.ts file in the src/app/store folder
+// NB we do not use this because StoreComponent is marked standalone
+// TDB make lazt loading
+
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule } from "@angular/forms";
+import { ModelModule } from "../model/model.module";
+// import { StoreComponent } from "./store.component";
+ 
+@NgModule({
+    imports: [ModelModule, BrowserModule, FormsModule],
+    declarations: [StoreComponent],
+    exports: [StoreComponent]
+})
+export class StoreModule { }
+```
+
+### 5.4.3 Updating the root component and root module
+
+```typescript
+import { Component } from "@angular/core";
+ 
+@Component({
+    selector: "app",
+    template: "<store></store>"
+})
+export class AppComponent { }
+```
