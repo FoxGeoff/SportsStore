@@ -452,3 +452,7 @@ import { Component } from "@angular/core";
 })
 export class AppComponent { }
 ```
+
+### Fix using Signals and Dependency Injection with Standalone Components
+
+1. Ref: Listing 5.14. The contents of the model.module.ts file in the src/app/model folder
