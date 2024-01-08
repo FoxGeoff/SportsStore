@@ -22,7 +22,7 @@ export class StoreComponent {
   constructor(private repository: ProductRepository) {
       this.products = repository.products;
       this.categories = repository.categories;
-      console.log(`In constructor: ${this.products()}`);
+      console.log(`In constructor: ${JSON.stringify(this.products())}`);
   }
 
 }
