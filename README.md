@@ -26,6 +26,11 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
+## Project introduction
+
+1. Run `json-server --watch db.json`
+2. Ref: <https://livebook.manning.com/book/pro-angular-16>
+
 ### Task Add commands to install packages
 
 ```typescript

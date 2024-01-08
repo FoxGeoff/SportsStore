@@ -8,6 +8,8 @@ export class ProductRepository {
     categories: Signal<string[]>;
 
     constructor(private dataSource: StaticDataSource) {
+      console.log(`in product repository`);
+
         this.products = dataSource.products;
         this.categories = computed(() => {
             return this.dataSource.products()
