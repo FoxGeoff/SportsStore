@@ -464,3 +464,9 @@ export class AppComponent { }
 ### Listing 5.21. Category filtering in the store.component.ts file in the src/app/store folder
 
 ### Listing 5.22. Adding category buttons in the store.component.html file in the src/app/store folder
+
+## 5.5.3 Adding product pagination
+
+### Listing 5.23. Adding pagination in the store.component.ts file in the src/app/store folder
+
+### Listing 5.24. Adding pagination in the store.component.html file in the src/app/store folder
