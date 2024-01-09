@@ -519,3 +519,14 @@ There is no visual change to the SportsStore application, but this section has d
 ## 6 SportsStore: orders and checkout
 
 1. Ref <https://livebook.manning.com/book/pro-angular-16/chapter-6/v-2>
+
+```text
+
+This chapter covers
+
+    Creating a shopping cart
+    Using URLs to navigate within the application
+    Creating and storing customer orders
+    Using a RESTful web service
+
+```
