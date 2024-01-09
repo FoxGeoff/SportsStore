@@ -1,4 +1,4 @@
-import { Component, Signal } from '@angular/core';
+import { Component, Signal, computed, signal } from '@angular/core';
 import { Product } from '../model/product.model';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
@@ -14,14 +14,26 @@ import { ProductRepository } from '../model/product.repository';
   styleUrl: './store.component.css'
 })
 export class StoreComponent {
-
+  
   products!: Signal<Product[]>;
   categories!: Signal<string[]>;
+  selectedCategory = signal<string | undefined>(undefined);
 
+  //debug: console.log(`In constructor: ${JSON.stringify(this.products())}`);
 
   constructor(private repository: ProductRepository) {
-    this.products = repository.products;
+    this.products = computed(() => {
+      if (this.selectedCategory() == undefined) {
+        return this.repository.products();
+      } else {
+        return this.repository.products().filter(p =>
+          p.category === this.selectedCategory());
+      }
+    })
     this.categories = repository.categories;
-    console.log(`In constructor: ${JSON.stringify(this.products())}`);
+  }
+
+  changeCategory(newCategory?: string) {
+    this.selectedCategory.set(newCategory);
   }
 }

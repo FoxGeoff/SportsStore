@@ -458,3 +458,9 @@ export class AppComponent { }
 1. Ref: Listing 5.14. The contents of the model.module.ts file in the src/app/model folder
 
 ### Listing 5.20. Adding elements in the store.component.html file in the src/app/store folder
+
+## Task: 5.5.2 Adding category selection
+
+### Listing 5.21. Category filtering in the store.component.ts file in the src/app/store folder
+
+### Listing 5.22. Adding category buttons in the store.component.html file in the src/app/store folder
