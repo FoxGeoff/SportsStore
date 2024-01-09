@@ -5,11 +5,12 @@ import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ModelModule } from '../model/model.module';
 import { ProductRepository } from '../model/product.repository';
+import { StoreModule } from './store.module';
 
 @Component({
   selector: 'app-store',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, FormsModule, ModelModule],
+  imports: [CommonModule, RouterOutlet, FormsModule, ModelModule, StoreModule],
   templateUrl: './store.component.html',
   styleUrl: './store.component.css'
 })

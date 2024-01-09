@@ -470,3 +470,52 @@ export class AppComponent { }
 ### Listing 5.23. Adding pagination in the store.component.ts file in the src/app/store folder
 
 ### Listing 5.24. Adding pagination in the store.component.html file in the src/app/store folder
+
+## 5.5.4 Creating a custom directive
+
+### Listing 5.25. The contents of the counter.directive.ts file in the src/app/store folder
+
+```text
+Tip
+
+This directive deletes all the content it has created and starts again when the number of pages changes. This can be an expensive process in more complex directives, and I explain how to improve performance in part 2.
+```
+
+### Listing 5.26. Registering the custom directive in the store.module.ts file in the src/app/store folder
+
+1. required for the use of `CounterDirective` ONLY (WIP 1/8/2023)
+
+```typescript
+// TBD: Needs to be modified for standalone components
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule } from "@angular/forms";
+import { ModelModule } from "../model/model.module";
+import { StoreComponent } from "./store.component";
+import { CounterDirective } from "./counter.directive";
+
+@NgModule({
+    imports: [ModelModule, BrowserModule, FormsModule],
+    declarations: [StoreComponent, CounterDirective],
+    exports: [StoreComponent]
+})
+export class StoreModule { }
+```
+
+```text
+Now that the directive has been registered, 
+it can be used in the store component’s 
+template to replace the ngFor directive, 
+as shown in listing 5.27.
+```
+
+### Listing 5.27. Replacing the built-in directive in the store.component.html file in the src/app/store folder
+
+```text
+***THIS WILL BE COMPLETED LATER***
+There is no visual change to the SportsStore application, but this section has demonstrated that it is possible to supplement the built-in Angular functionality with custom code that is tailored to the needs of a specific project.
+```
+
+## 6 SportsStore: orders and checkout
+
+1. Ref <https://livebook.manning.com/book/pro-angular-16/chapter-6/v-2>
